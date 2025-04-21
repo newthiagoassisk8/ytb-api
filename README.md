@@ -24,4 +24,24 @@ Este backend foi desenvolvido para ser consumido por um aplicativo mobile React 
 
 ---
 
+## 🚀 Executando o Projeto
+
+Para rodar este projeto, certifique-se de que você está utilizando o **Python 3.11** e que possui um **ambiente virtual** ativado.
+
+Após instalar as dependências necessárias, execute o seguinte comando:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8006
+```
+
+Esse comando inicia a aplicação utilizando o `uvicorn`, tornando-a acessível em todas as interfaces de rede (`0.0.0.0`) na porta `8006`.
+
+> 💡 Dica: para criar e ativar um ambiente virtual, utilize os comandos abaixo:
+
+```bash
+python3.11 -m venv venv
+source venv/bin/activate  # No Linux/macOS
+venv\Scripts\activate     # No Windows
+```
+
 Feita para estudos e experimentação com FastAPI, yt-dlp e integração com apps móveis. 🚀
