@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request  # ← IMPORTAÇÃO DO OBJETO Request AQUI
+from fastapi import FastAPI, HTTPException, Request  
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from datetime import datetime, timedelta
@@ -15,10 +15,10 @@ video_store = {}
 EXPIRATION_MINUTES = 10
 
 class VideoRequest(BaseModel):
-    id: str  # Apenas o ID do vídeo do YouTube
+    id: str 
 
 @app.post("/download")
-async def download_video(data: VideoRequest, request: Request):  # ← REQUEST FOI ADICIONADO AQUI
+async def download_video(data: VideoRequest, request: Request):
     video_id_youtube = data.id
     video_url = f"https://www.youtube.com/watch?v={video_id_youtube}"
     local_id = str(uuid.uuid4())
@@ -52,11 +52,11 @@ async def download_video(data: VideoRequest, request: Request):  # ← REQUEST F
         "filename": filename
     }
 
-    # ← AQUI ESTÁ A MUDANÇA PRINCIPAL: monta a URL usando o base_url (inclui ip:porta)
+
     download_url = f"{request.base_url}video/{local_id}"
 
     return {
-        "download_url": download_url,  # ← URL COMPLETA RETORNADA AQUI
+        "download_url": download_url,
         "expires_in_minutes": EXPIRATION_MINUTES,
         "title": title
     }
