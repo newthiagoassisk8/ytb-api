@@ -1,12 +1,22 @@
-from fastapi import FastAPI, HTTPException, Request  
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 import yt_dlp
 import uuid
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+# TODO: subir isso no docker
+# Middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Substitua por domínios específicos em produção
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 DOWNLOAD_DIR = "downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
@@ -15,7 +25,7 @@ video_store = {}
 EXPIRATION_MINUTES = 10
 
 class VideoRequest(BaseModel):
-    id: str 
+    id: str
 
 @app.post("/download")
 async def download_video(data: VideoRequest, request: Request):
