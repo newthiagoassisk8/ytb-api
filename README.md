@@ -17,8 +17,8 @@ Essa é uma **API simples feita com FastAPI** que usa a biblioteca [`yt-dlp`](ht
 ## 📲 Projeto relacionado (Frontend)
 
 Este backend foi desenvolvido para ser consumido por um aplicativo mobile React Native que você pode conferir aqui:
-
-🔗 [daily-diet-app (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/daily-diet-app/tree/youtube-video-downloader)
+🔗 [web (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/web-youtube-video-downloader)
+🔗 [mobile (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/youtube-video-downloader)
 
 > **PS:** Sim, o nome do repositório parece estar em uma fase de identidade confusa — *não tem nada a ver com dieta*
 
