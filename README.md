@@ -1,47 +1,47 @@
 # 🎬 YouTube Video Downloader API
 
-Essa é uma **API simples feita com FastAPI** que usa a biblioteca [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) para baixar vídeos do YouTube. Ela foi criada para ser utilizada por um app mobile em React Native como forma de praticar integração entre frontend e backend.
+This is a **simple API built with FastAPI** that uses the [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) library to download YouTube videos. It was created to be used by a React Native mobile app as a way to practice frontend and backend integration.
 
-## ✨ O que ela faz
+## ✨ What It Does
 
-- Recebe o **ID de um vídeo do YouTube**.
-- Usa o `yt-dlp` para **baixar o vídeo no formato MP4**.
-- Gera um link temporário para que o app possa baixar o vídeo.
-- O link é válido por 10 minutos e depois o vídeo é excluído automaticamente do servidor.
+* Receives a **YouTube video ID**.
+* Uses `yt-dlp` to **download the video in MP4 format**.
+* Generates a temporary link so the app can download the video.
+* The link is valid for 10 minutes, after which the video is automatically deleted from the server.
 
-## 🔗 Endpoints principais
+## 🔗 Main Endpoints
 
-- `POST /download`: inicia o download de um vídeo a partir do ID e retorna o link para download.
-- `GET /video/{id}`: entrega o vídeo, se o link ainda estiver válido.
+* `POST /download`: starts downloading a video based on its ID and returns a download link.
+* `GET /video/{id}`: serves the video if the link is still valid.
 
-## 📲 Projeto relacionado (Frontend)
+## 📲 Related Project (Frontend)
 
-Este backend foi desenvolvido para ser consumido por um aplicativo mobile React Native que você pode conferir aqui:
-🔗 [web (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/web-youtube-video-downloader)
-🔗 [mobile (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/youtube-video-downloader)
+This backend was developed to be consumed by a React Native mobile app, which you can check out here:
 
-> **PS:** Sim, o nome do repositório parece estar em uma fase de identidade confusa — *não tem nada a ver com dieta*
+🔗 [daily-diet-app (branch youtube-video-downloader)](https://github.com/newthiagoassisk8/daily-diet-app/tree/youtube-video-downloader)
+
+> **PS:** Yes, the repo name is going through an identity crisis — *it has nothing to do with dieting*.
 
 ---
 
-## 🚀 Executando o Projeto
+## 🚀 Running the Project
 
-Para rodar este projeto, certifique-se de que você está utilizando o **Python 3.11** e que possui um **ambiente virtual** ativado.
+To run this project, make sure you're using **Python 3.11** and have a **virtual environment** activated.
 
-Após instalar as dependências necessárias, execute o seguinte comando:
+After installing the required dependencies, run the following command:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8006
 ```
 
-Esse comando inicia a aplicação utilizando o `uvicorn`, tornando-a acessível em todas as interfaces de rede (`0.0.0.0`) na porta `8006`.
+This command starts the application using `uvicorn`, making it accessible on all network interfaces (`0.0.0.0`) on port `8006`.
 
-> 💡 Dica: para criar e ativar um ambiente virtual, utilize os comandos abaixo:
+> 💡 Tip: to create and activate a virtual environment, use the commands below:
 
 ```bash
 python3.11 -m venv venv
-source venv/bin/activate  # No Linux/macOS
-venv\Scripts\activate     # No Windows
+source venv/bin/activate  # On Linux/macOS
+venv\Scripts\activate     # On Windows
 ```
 
-Feita para estudos e experimentação com FastAPI, yt-dlp e integração com apps móveis. 🚀
+Built for learning and experimenting with FastAPI, yt-dlp, and mobile app integration. 🚀
