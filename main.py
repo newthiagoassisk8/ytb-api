@@ -7,9 +7,10 @@ import uuid
 import os
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
+from humanize import intword, naturaltime
 
 app = FastAPI()
-# TODO: subir isso no docker
+# TODO: subir isso no docker ss
 # Middleware CORS
 app.add_middleware(
     CORSMiddleware,
@@ -163,3 +164,41 @@ async def get_video(local_id: str):
             "Content-Disposition": f"attachment; filename={video_data['filename']}"
         }
     )
+
+@app.get("/video-info/{video_id}")
+async def get_video_info(video_id: str):
+
+    url = f"https://www.youtube.com/watch?v={video_id}"
+
+    ydl_opts = {
+        "quiet": True,
+        "skip_download": True,
+        "force_generic_extractor": False,
+    }
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+
+        # Formata data
+        upload_date_str = info.get("upload_date")
+        if upload_date_str:
+            upload_date = datetime.strptime(upload_date_str, "%Y%m%d")
+            created_at = naturaltime(datetime.now() - upload_date)
+        else:
+            created_at = "data desconhecida"
+
+        # Formata views
+        view_count = info.get("view_count", 0)
+        formatted_views = f"{intword(view_count)} views"
+
+        return {
+            "src": info.get("thumbnail"),
+            "title": info.get("title"),
+            "channel": info.get("uploader"),
+            "views": formatted_views,
+            "createdAt": created_at,
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Erro ao buscar informações do vídeo: {str(e)}")
